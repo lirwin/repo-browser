@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Ember from 'ember'
 const {Route} = Ember
 
@@ -18,15 +19,18 @@ export default Route.extend({
 
     const favorites = organizations.slice(1, 2)
 
-    return {
+    return Ember.Object.create({
       favorites,
       organizations
-    }
+    })
   },
 
   actions: {
     favoriteOrganization (organization) {
-      console.info('Favorite', organization)
+      const model = this.modelFor(this.routeName)
+      const favorites = _.cloneDeep(model.get('favorites'))
+      favorites.addObject(organization)
+      model.set('favorites', favorites)
     },
 
     itemSelected (item) {
