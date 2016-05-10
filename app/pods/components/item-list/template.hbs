@@ -1,0 +1,7 @@
+{{#each items as |item|}}
+  <li>
+    {{yield item}}
+  </li>
+{{else}}
+  {{yield to="inverse"}}
+{{/each}}

@@ -1,7 +1,5 @@
-<ul>
-  {{#each model as |organization|}}
-    <li>
-      {{organization.name}}
-    </li>
-  {{/each}}
-</ul>
+{{#item-list items=model as |organization|}}
+  {{organization.name}}
+{{else}}
+  No organizations.
+{{/item-list}}
