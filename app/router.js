@@ -8,6 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function () {
   this.route('organizations')
+  this.route('favorites')
 })
 
 export default Router

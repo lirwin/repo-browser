@@ -1,36 +1,30 @@
-import _ from 'lodash'
 import Ember from 'ember'
-const {Route} = Ember
+const {inject, Route} = Ember
 
 export default Route.extend({
+  favoriteItems: inject.service(),
+
   model () {
-    const organizations = [
-      {
-        iconUrl: 'https://api.adorable.io/avatars/285/hello%40ciena.com',
-        id: 1,
-        name: 'Org 1'
-      },
-      {
-        iconUrl: 'https://api.adorable.io/avatars/285/another%40ciena.com',
-        id: 2,
-        name: 'Org 2'
-      }
-    ]
-
-    const favorites = organizations.slice(1, 2)
-
-    return Ember.Object.create({
-      favorites,
-      organizations
-    })
+    return {
+      favorites: this.get('favoriteItems'),
+      organizations: [
+        {
+          iconUrl: 'https://api.adorable.io/avatars/285/hello%40ciena.com',
+          id: 1,
+          name: 'Org 1'
+        },
+        {
+          iconUrl: 'https://api.adorable.io/avatars/285/another%40ciena.com',
+          id: 2,
+          name: 'Org 2'
+        }
+      ]
+    }
   },
 
   actions: {
     favoriteOrganization (organization) {
-      const model = this.modelFor(this.routeName)
-      const favorites = _.cloneDeep(model.get('favorites'))
-      favorites.addObject(organization)
-      model.set('favorites', favorites)
+      this.get('favoriteItems').addItem(organization)
     },
 
     itemSelected (item) {

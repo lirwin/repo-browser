@@ -6,7 +6,7 @@
   <img src={{organization.iconUrl}}>
   {{organization.name}}
   {{fa-icon
-    (favorite-icon-for model.favorites organization)
+    (favorite-icon-for model.favorites.items organization)
     click=(route-action "favoriteOrganization" organization)
   }}
 {{else}}
