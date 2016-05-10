@@ -1,0 +1,53 @@
+$green: #008000;
+$item-border-color: #ccc;
+$orange: #ffa500;
+
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-bottom: 1px solid $item-border-color;
+    line-height: 24px;
+    padding: .5rem;
+
+    &:first-child {
+      border-top: 1px solid $item-border-color;
+    }
+  }
+
+  img {
+    border-radius: 2px;
+    display: inline-block;
+    height: 24px;
+    margin-right: 2px;
+    vertical-align: middle;
+    width: 24px;
+
+    &.no-items {
+      height: 60px;
+      width: 60px;
+    }
+  }
+
+  .fa {
+    cursor: pointer;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  .fa-star {
+    color: $orange;
+  }
+
+  a {
+    text-decoration: none;
+
+    &.active {
+      color: $green;
+    }
+  }
+}

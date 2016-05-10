@@ -1,5 +1,14 @@
-{{#item-list items=model as |organization|}}
+{{#item-list
+  items=model.organizations
+  on-item-select=(route-action "itemSelected")
+  as |organization|
+}}
+  <img src={{organization.iconUrl}}>
   {{organization.name}}
+  {{fa-icon
+    (favorite-icon-for model.favorites organization)
+    click=(route-action "favoriteOrganization" organization)
+  }}
 {{else}}
   No organizations.
 {{/item-list}}

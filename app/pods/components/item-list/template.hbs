@@ -1,5 +1,5 @@
-{{#each items as |item|}}
-  <li>
+{{#each items as |item index|}}
+  <li {{action on-item-select index}}>
     {{yield item}}
   </li>
 {{else}}

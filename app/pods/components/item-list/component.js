@@ -3,6 +3,7 @@ const {Component} = Ember
 import {PropTypes} from 'ember-prop-types'
 
 export default Component.extend({
+  classNames: ['item-list'],
   tagName: 'ul',
 
   propTypes: {
