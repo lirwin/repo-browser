@@ -13,7 +13,6 @@ export default Route.extend({
     ])
 
     return RSVP.hash({
-      remoteOrganizations,
       favorites: this.get('favoriteItems'),
       localOrganizations: [
         {
@@ -26,7 +25,8 @@ export default Route.extend({
           id: 2,
           name: 'Org 2'
         }
-      ]
+      ],
+      remoteOrganizations
     })
   },
 
