@@ -8,6 +8,9 @@ module.exports = function (environment) {
       FEATURES: {}
     },
     environment,
+    github: {
+      publicAccessToken: process.env.GITHUB_PUBLIC_ACCESS_TOKEN
+    },
     locationType: 'auto',
     modulePrefix: 'repo-browser',
     podModulePrefix: 'repo-browser/pods'

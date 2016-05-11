@@ -1,13 +1,21 @@
 import Ember from 'ember'
-const {inject, Route} = Ember
+const {inject, Route, RSVP} = Ember
+import config from '../../config/environment'
+const {github} = config
 
 export default Route.extend({
+  ajax: inject.service(),
   favoriteItems: inject.service(),
 
   model () {
-    return {
+    const remoteOrganizations = RSVP.all([
+      this.get('ajax').request(`https://api.github.com/users/emberjs?access_token=${github.publicAccessToken}`)
+    ])
+
+    return RSVP.hash({
+      remoteOrganizations,
       favorites: this.get('favoriteItems'),
-      organizations: [
+      localOrganizations: [
         {
           iconUrl: 'https://api.adorable.io/avatars/285/hello%40ciena.com',
           id: 1,
@@ -19,7 +27,7 @@ export default Route.extend({
           name: 'Org 2'
         }
       ]
-    }
+    })
   },
 
   actions: {

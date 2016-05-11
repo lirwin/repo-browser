@@ -1,5 +1,20 @@
 {{#item-list
-  items=model.organizations
+  items=model.localOrganizations
+  on-item-select=(route-action "itemSelected")
+  as |organization|
+}}
+  <img src={{organization.iconUrl}}>
+  {{organization.name}}
+  {{fa-icon
+    (favorite-icon-for model.favorites.items organization)
+    click=(route-action "favoriteOrganization" organization)
+  }}
+{{else}}
+  No organizations.
+{{/item-list}}
+
+{{#item-list
+  items=model.remoteOrganizations
   on-item-select=(route-action "itemSelected")
   as |organization|
 }}
